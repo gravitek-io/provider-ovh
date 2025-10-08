@@ -1,143 +1,143 @@
-# Ressources OVH avec Problèmes de Schéma
+# OVH Resources with Schema Issues
 
-Ce document liste les ressources du provider Terraform OVH qui ont des problèmes de schéma et qui n'ont pas pu être générées automatiquement avec Upjet.
+This document lists resources from the OVH Terraform provider that have schema issues and could not be automatically generated with Upjet.
 
-## Statut de la Génération
+## Generation Status
 
-- **Total de ressources dans le provider Terraform OVH** : 139
-- **Ressources générées avec succès** : 127 (91%)
-- **Ressources avec problèmes de schéma** : 12 (9%)
+- **Total resources in OVH Terraform provider**: 139
+- **Successfully generated resources**: 127 (91%)
+- **Resources with schema issues**: 12 (9%)
 
-## Ressources Problématiques
+## Problematic Resources
 
-Les ressources suivantes ont été temporairement exclues de la génération et nécessitent une configuration personnalisée :
+The following resources have been temporarily excluded from generation and require custom configuration:
 
 ### 1. `ovh_cloud_project_alerting`
-- **Champ problématique** : `formatted_monthly_threshold`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 14
+- **Problematic field**: `formatted_monthly_threshold`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 14
 
 ### 2. `ovh_cloud_project_loadbalancer`
-- **Champ problématique** : `floating_ip`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 50
+- **Problematic field**: `floating_ip`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 50
 
 ### 3. `ovh_cloud_project_rancher`
-- **Champ problématique** : `current_state`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 54
+- **Problematic field**: `current_state`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 54
 
 ### 4. `ovh_cloud_project_region`
-- **Champ problématique** : `services`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 55
+- **Problematic field**: `services`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 55
 
 ### 5. `ovh_cloud_project_region_network`
-- **Champ problématique** : `subnet`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 57
+- **Problematic field**: `subnet`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 57
 
 ### 6. `ovh_cloud_project_storage`
-- **Champ problématique** : `encryption`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 60
+- **Problematic field**: `encryption`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 60
 
 ### 7. `ovh_cloud_project_volume`
-- **Champ problématique** : `sub_operations`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 64
+- **Problematic field**: `sub_operations`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 64
 
 ### 8. `ovh_dedicated_server`
-- **Champ problématique** : `customizations`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 83
-- **Note** : Ressource importante pour la gestion des serveurs dédiés
+- **Problematic field**: `customizations`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 83
+- **Note**: Important resource for dedicated server management
 
 ### 9. `ovh_domain_name`
-- **Champ problématique** : `current_state`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 91
-- **Note** : Ressource importante pour la gestion des domaines
+- **Problematic field**: `current_state`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 91
+- **Note**: Important resource for domain management
 
 ### 10. `ovh_okms`
-- **Champ problématique** : `iam`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 146
+- **Problematic field**: `iam`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 146
 
 ### 11. `ovh_okms_service_key_jwk`
-- **Champ problématique** : `iam`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 149
+- **Problematic field**: `iam`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 149
 
 ### 12. `ovh_vps`
-- **Champ problématique** : `iam`
-- **Type d'erreur** : TypeInvalid
-- **Ligne dans external_name.go** : 165
-- **Note** : Ressource importante pour la gestion des VPS
+- **Problematic field**: `iam`
+- **Error type**: TypeInvalid
+- **Line in external_name.go**: 165
+- **Note**: Important resource for VPS management
 
-## Analyse des Problèmes
+## Problem Analysis
 
-### Types de problèmes identifiés
+### Identified Issue Types
 
-1. **Champs `iam`** (3 ressources) : `ovh_okms`, `ovh_okms_service_key_jwk`, `ovh_vps`
-   - Problème lié aux nouveaux champs IAM ajoutés par OVH
-   - Type de schéma invalide pour Upjet
+1. **`iam` fields** (3 resources): `ovh_okms`, `ovh_okms_service_key_jwk`, `ovh_vps`
+   - Related to new IAM fields added by OVH
+   - Invalid schema type for Upjet
 
-2. **Champs `current_state`** (2 ressources) : `ovh_cloud_project_rancher`, `ovh_domain_name`
-   - Champs d'état complexes
+2. **`current_state` fields** (2 resources): `ovh_cloud_project_rancher`, `ovh_domain_name`
+   - Complex state fields
 
-3. **Champs de configuration complexe** (7 ressources)
-   - Types de données complexes ou imbriqués que Upjet ne peut pas inférer automatiquement
+3. **Complex configuration fields** (7 resources)
+   - Complex or nested data types that Upjet cannot automatically infer
 
-## Solutions Possibles
+## Possible Solutions
 
-### Option 1 : Configuration Personnalisée par Ressource
+### Option 1: Custom Configuration per Resource
 
-Créer des configurations personnalisées dans `config/<group>/config.go` pour chaque ressource problématique :
+Create custom configurations in `config/<group>/config.go` for each problematic resource:
 
 ```go
 func Configure(p *config.Provider) {
     p.AddResourceConfigurator("ovh_dedicated_server", func(r *config.Resource) {
-        // Ignorer ou transformer le champ problématique
+        // Ignore or transform the problematic field
         r.Schema.IgnoreFields("customizations")
-        // OU
+        // OR
         r.Schema.SetEmbeddedObject("customizations")
     })
 }
 ```
 
-### Option 2 : Patch du Schéma Terraform
+### Option 2: Terraform Schema Patch
 
-Contacte OVH pour signaler les problèmes de schéma dans leur provider Terraform.
+Contact OVH to report schema issues in their Terraform provider.
 
-### Option 3 : Upjet Custom Types
+### Option 3: Upjet Custom Types
 
-Définir des types personnalisés pour les champs complexes.
+Define custom types for complex fields.
 
-### Option 4 : Laisser Commentées Temporairement
+### Option 4: Keep Commented Temporarily
 
-Garder ces ressources commentées et les activer progressivement selon les besoins des utilisateurs.
+Keep these resources commented and activate them progressively based on user needs.
 
-## Prochaines Étapes
+## Next Steps
 
-1. ✅ Documenter toutes les ressources problématiques
-2. ⏳ Créer des tickets pour chaque ressource nécessitant une attention particulière
-3. ⏳ Implémenter des configurations personnalisées pour les ressources prioritaires :
-   - `ovh_dedicated_server` (priorité haute)
-   - `ovh_domain_name` (priorité haute)
-   - `ovh_vps` (priorité moyenne)
-4. ⏳ Tester la génération avec les configurations personnalisées
-5. ⏳ Documenter les workarounds dans la documentation utilisateur
+1. ✅ Document all problematic resources
+2. ⏳ Create tickets for each resource requiring special attention
+3. ⏳ Implement custom configurations for priority resources:
+   - `ovh_dedicated_server` (high priority)
+   - `ovh_domain_name` (high priority)
+   - `ovh_vps` (medium priority)
+4. ⏳ Test generation with custom configurations
+5. ⏳ Document workarounds in user documentation
 
-## Références
+## References
 
 - [Upjet Documentation - Custom Resource Configuration](https://github.com/crossplane/upjet/blob/main/docs/configuring-a-resource.md)
 - [OVH Terraform Provider - Issues](https://github.com/ovh/terraform-provider-ovh/issues)
-- Logs de génération : `/tmp/gen_test_*.log`
+- Generation logs: `/tmp/gen_test_*.log`
 
-## Notes Importantes
+## Important Notes
 
-- Les 12 ressources exclues représentent 9% du total
-- 127 ressources fonctionnent parfaitement (91%)
-- Le provider est utilisable dès maintenant avec la majorité des ressources OVH
-- Les ressources problématiques peuvent être ajoutées progressivement avec des configurations personnalisées
+- The 12 excluded resources represent 9% of the total
+- 127 resources work perfectly (91%)
+- The provider is usable right now with the majority of OVH resources
+- Problematic resources can be added progressively with custom configurations
