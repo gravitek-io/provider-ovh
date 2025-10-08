@@ -1,6 +1,6 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
-  name: provider-ovhcloud
+  name: provider-ovh
 spec:
-  package: xpkg.crossplane.io/gravitek/provider-ovhcloud:v0.1.0
+  package: xpkg.upbound.io/gravitek/provider-ovh:v0.1.0

@@ -8,10 +8,10 @@ exposes XRM-conformant managed resources for the OVHcloud API.
 
 Install the provider by using the following command after changing the image tag
 to the
-[latest release](https://marketplace.upbound.io/providers/gravitek-io/provider-ovh):
+[latest release](https://marketplace.upbound.io/providers/gravitek/provider-ovh):
 
 ```
-crossplane xpkg install provider xpkg.crossplane.io/gravitek-io/provider-ovh:v0.1.0
+crossplane xpkg install provider xpkg.upbound.io/gravitek/provider-ovh:v0.1.0
 ```
 
 Alternatively, you can use declarative installation:
@@ -23,7 +23,7 @@ kind: Provider
 metadata:
   name: provider-ovh
 spec:
-  package: xpkg.crossplane.io/gravitek-io/provider-ovh:v0.1.0
+  package: xpkg.upbound.io/gravitek/provider-ovh:v0.1.0
 EOF
 ```
 

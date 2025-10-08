@@ -1,0 +1,15 @@
+apiVersion: cloud.ovh.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: example-project
+spec:
+  forProvider:
+    description: "Example OVH Cloud Project managed by Crossplane"
+    ovhSubsidiary: "FR"
+    paymentMean: "fidelity"
+    plan:
+      - duration: "P1M"
+        planCode: "project.2018"
+        pricingMode: "default"
+  providerConfigRef:
+    name: default
