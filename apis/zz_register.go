@@ -10,15 +10,45 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
+	v1alpha1 "github.com/gravitek-io/provider-ovh/apis/cloud/v1alpha1"
+	v1alpha1dbaas "github.com/gravitek-io/provider-ovh/apis/dbaas/v1alpha1"
+	v1alpha1dedicated "github.com/gravitek-io/provider-ovh/apis/dedicated/v1alpha1"
+	v1alpha1domain "github.com/gravitek-io/provider-ovh/apis/domain/v1alpha1"
+	v1alpha1hosting "github.com/gravitek-io/provider-ovh/apis/hosting/v1alpha1"
+	v1alpha1iam "github.com/gravitek-io/provider-ovh/apis/iam/v1alpha1"
+	v1alpha1ip "github.com/gravitek-io/provider-ovh/apis/ip/v1alpha1"
+	v1alpha1iploadbalancing "github.com/gravitek-io/provider-ovh/apis/iploadbalancing/v1alpha1"
+	v1alpha1me "github.com/gravitek-io/provider-ovh/apis/me/v1alpha1"
+	v1alpha1okms "github.com/gravitek-io/provider-ovh/apis/okms/v1alpha1"
+	v1alpha1ovh "github.com/gravitek-io/provider-ovh/apis/ovh/v1alpha1"
+	v1alpha1ovhcloud "github.com/gravitek-io/provider-ovh/apis/ovhcloud/v1alpha1"
+	v1alpha1savings "github.com/gravitek-io/provider-ovh/apis/savings/v1alpha1"
+	v1alpha1storage "github.com/gravitek-io/provider-ovh/apis/storage/v1alpha1"
 	v1alpha1apis "github.com/gravitek-io/provider-ovh/apis/v1alpha1"
 	v1beta1 "github.com/gravitek-io/provider-ovh/apis/v1beta1"
+	v1alpha1vrack "github.com/gravitek-io/provider-ovh/apis/vrack/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
+		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1dbaas.SchemeBuilder.AddToScheme,
+		v1alpha1dedicated.SchemeBuilder.AddToScheme,
+		v1alpha1domain.SchemeBuilder.AddToScheme,
+		v1alpha1hosting.SchemeBuilder.AddToScheme,
+		v1alpha1iam.SchemeBuilder.AddToScheme,
+		v1alpha1ip.SchemeBuilder.AddToScheme,
+		v1alpha1iploadbalancing.SchemeBuilder.AddToScheme,
+		v1alpha1me.SchemeBuilder.AddToScheme,
+		v1alpha1okms.SchemeBuilder.AddToScheme,
+		v1alpha1ovh.SchemeBuilder.AddToScheme,
+		v1alpha1ovhcloud.SchemeBuilder.AddToScheme,
+		v1alpha1savings.SchemeBuilder.AddToScheme,
+		v1alpha1storage.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1vrack.SchemeBuilder.AddToScheme,
 	)
 }
 

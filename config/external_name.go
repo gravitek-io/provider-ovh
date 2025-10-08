@@ -11,7 +11,7 @@ import "github.com/crossplane/upjet/pkg/config"
 var ExternalNameConfigs = map[string]config.ExternalName{
 	// Cloud Project resources
 	"ovh_cloud_project":                                              config.IdentifierFromProvider,
-	"ovh_cloud_project_alerting":                                     config.IdentifierFromProvider,
+	// "ovh_cloud_project_alerting": // TODO: Schema issue -                                     config.IdentifierFromProvider,
 	"ovh_cloud_project_containerregistry":                            config.IdentifierFromProvider,
 	"ovh_cloud_project_containerregistry_iam":                        config.IdentifierFromProvider,
 	"ovh_cloud_project_containerregistry_ip_restrictions_management": config.IdentifierFromProvider,
@@ -47,21 +47,21 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_cloud_project_kube_iprestrictions":                          config.IdentifierFromProvider,
 	"ovh_cloud_project_kube_nodepool":                                config.IdentifierFromProvider,
 	"ovh_cloud_project_kube_oidc":                                    config.IdentifierFromProvider,
-	"ovh_cloud_project_loadbalancer":                                 config.IdentifierFromProvider,
+	// "ovh_cloud_project_loadbalancer": // TODO: Schema issue -                                 config.IdentifierFromProvider,
 	"ovh_cloud_project_network_private":                              config.IdentifierFromProvider,
 	"ovh_cloud_project_network_private_subnet":                       config.IdentifierFromProvider,
 	"ovh_cloud_project_network_private_subnet_v2":                    config.IdentifierFromProvider,
-	"ovh_cloud_project_rancher":                                      config.IdentifierFromProvider,
-	"ovh_cloud_project_region":                                       config.IdentifierFromProvider,
+	// "ovh_cloud_project_rancher": // TODO: Schema issue -                                      config.IdentifierFromProvider,
+	// "ovh_cloud_project_region": // TODO: Schema issue -                                       config.IdentifierFromProvider,
 	"ovh_cloud_project_region_loadbalancer_log_subscription":         config.IdentifierFromProvider,
-	"ovh_cloud_project_region_network":                               config.IdentifierFromProvider,
+	// "ovh_cloud_project_region_network": // TODO: Schema issue -                               config.IdentifierFromProvider,
 	"ovh_cloud_project_region_storage_presign":                       config.IdentifierFromProvider,
 	"ovh_cloud_project_ssh_key":                                      config.IdentifierFromProvider,
-	"ovh_cloud_project_storage":                                      config.IdentifierFromProvider,
+	// "ovh_cloud_project_storage": // TODO: Schema issue -                                      config.IdentifierFromProvider,
 	"ovh_cloud_project_user":                                         config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_credential":                           config.IdentifierFromProvider,
 	"ovh_cloud_project_user_s3_policy":                               config.IdentifierFromProvider,
-	"ovh_cloud_project_volume":                                       config.IdentifierFromProvider,
+	// "ovh_cloud_project_volume": // TODO: Schema issue -                                       config.IdentifierFromProvider,
 	"ovh_cloud_project_volume_backup":                                config.IdentifierFromProvider,
 	"ovh_cloud_project_workflow_backup":                              config.IdentifierFromProvider,
 
@@ -80,7 +80,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_dedicated_nasha_partition":       config.IdentifierFromProvider,
 	"ovh_dedicated_nasha_partition_access": config.IdentifierFromProvider,
 	"ovh_dedicated_nasha_partition_snapshot": config.IdentifierFromProvider,
-	"ovh_dedicated_server":                config.IdentifierFromProvider,
+	// "ovh_dedicated_server":                config.IdentifierFromProvider, // TODO: Excluded due to schema issue with customizations field
 	"ovh_dedicated_server_networking":     config.IdentifierFromProvider,
 	"ovh_dedicated_server_reboot_task":    config.IdentifierFromProvider,
 	"ovh_dedicated_server_reinstall_task": config.IdentifierFromProvider,
@@ -88,7 +88,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// Domain resources
 	"ovh_domain_ds_records":         config.IdentifierFromProvider,
-	"ovh_domain_name":               config.IdentifierFromProvider,
+	// "ovh_domain_name":               config.IdentifierFromProvider, // TODO: Excluded due to schema issue with current_state field
 	"ovh_domain_name_servers":       config.IdentifierFromProvider,
 	"ovh_domain_zone":               config.IdentifierFromProvider,
 	"ovh_domain_zone_dnssec":        config.IdentifierFromProvider,
@@ -143,10 +143,10 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_me_identity_user":     config.IdentifierFromProvider,
 
 	// OKMS (OVHcloud Key Management Service) resources
-	"ovh_okms":                 config.IdentifierFromProvider,
+	// "ovh_okms": // TODO: Schema issue -                 config.IdentifierFromProvider,
 	"ovh_okms_credential":      config.IdentifierFromProvider,
 	"ovh_okms_service_key":     config.IdentifierFromProvider,
-	"ovh_okms_service_key_jwk": config.IdentifierFromProvider,
+	// "ovh_okms_service_key_jwk": config.IdentifierFromProvider, // TODO: Excluded due to schema issue with iam field
 
 	// OVHcloud Connect resources
 	"ovh_ovhcloud_connect_pop_config":                  config.IdentifierFromProvider,
@@ -162,7 +162,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"ovh_storage_efs_share_snapshot": config.IdentifierFromProvider,
 
 	// VPS resources
-	"ovh_vps": config.IdentifierFromProvider,
+	// "ovh_vps": // TODO: Schema issue - config.IdentifierFromProvider,
 
 	// vRack resources
 	"ovh_vrack":                              config.IdentifierFromProvider,

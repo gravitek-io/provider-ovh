@@ -191,12 +191,34 @@ or OAuth2:
 
 ## Current State
 
-The provider currently includes:
+### Resource Coverage
 
-- `null_resource` as a reference/example resource
+The provider currently supports **127 out of 139 OVH resources** (91% coverage):
+
+**Supported Resource Groups:**
+- ✅ Cloud Project (46 resources) - Compute, databases, networking, Kubernetes
+- ✅ DBaaS Logs (8 resources) - Log management
+- ✅ Dedicated Server (8 resources) - Server management (excluding ovh_dedicated_server itself)
+- ✅ Domain (9 resources) - DNS and domain management
+- ✅ Hosting (5 resources) - Private database hosting
+- ✅ IAM (3 resources) - Identity and access management
+- ✅ IP (6 resources) - IP management, firewall
+- ✅ IP Load Balancing (17 resources) - Load balancer configuration
+- ✅ Me/Account (3 resources) - Account and OAuth2
+- ✅ OKMS (2 resources) - Key management service
+- ✅ OVHcloud Connect (3 resources) - Network connectivity
+- ✅ Savings Plan (1 resource) - Cost optimization
+- ✅ Storage EFS (3 resources) - File storage
+- ✅ vRack (10 resources) - Private networking
+
+**Excluded Resources (12):**
+See [docs/problematic-resources.md](docs/problematic-resources.md) for the list of resources with schema issues that require custom configuration before they can be added.
+
+**Key Features:**
 - ProviderConfig infrastructure for credential management
+- Support for both application-based and OAuth2 authentication
 - Support for management policies (beta feature)
 - Optional external secret stores (alpha feature)
 
-The null resource configuration serves as a template for adding real OVHcloud
-resources.
+**Important Note:**
+Ensure `$HOME/go/bin` is in your PATH before running code generation (goimports is required).
