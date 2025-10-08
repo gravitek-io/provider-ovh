@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/gravitek-io/provider-ovh
 
 go 1.21
 
