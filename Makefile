@@ -136,6 +136,16 @@ pull-docs:
 
 generate.init: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs
 
+generate.run: export PATH := $(PATH):$(HOME)/go/bin
+generate.run:
+	@$(INFO) Running Upjet code generator
+	@go run cmd/generator/main.go "$(PWD)"
+	@$(INFO) Generating DeepCopy methods
+	@go run sigs.k8s.io/controller-tools/cmd/controller-gen object:headerFile=./hack/boilerplate.go.txt paths="./apis/..." crd:allowDangerousTypes=true,crdVersions=v1 output:artifacts:config=./package/crds
+	@$(INFO) Generating Crossplane methodsets
+	@go run github.com/crossplane/crossplane-tools/cmd/angryjet generate-methodsets --header-file=./hack/boilerplate.go.txt ./apis/...
+	@$(OK) Code generation completed
+
 .PHONY: $(TERRAFORM_PROVIDER_SCHEMA) pull-docs check-terraform-version
 # ====================================================================================
 # Targets
