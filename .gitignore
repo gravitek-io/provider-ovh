@@ -6,6 +6,10 @@ cover.out
 /.vendor-new
 .DS_Store
 
+# Compiled binaries (should only be in _output/)
+/generator
+/provider
+
 # ignore IDE folders
 .vscode/
 .idea/
