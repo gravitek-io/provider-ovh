@@ -13,7 +13,7 @@ import (
 
 // Package type metadata.
 const (
-	Group   = "ovhcloud.crossplane.io"
+	Group   = "ovh.crossplane.io"
 	Version = "v1beta1"
 )
 
