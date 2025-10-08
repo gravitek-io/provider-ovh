@@ -4,9 +4,9 @@ kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
-  name: providerconfigs.ovhcloud.crossplane.io
+  name: providerconfigs.ovh.crossplane.io
 spec:
-  group: ovhcloud.crossplane.io
+  group: ovh.crossplane.io
   names:
     categories:
     - crossplane
