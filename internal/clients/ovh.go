@@ -28,6 +28,10 @@ const (
 	errNoValidCredentials   = "cannot find valid credentials"
 )
 
+// OVHCredentials represents OVH API credentials from the provider secret.
+// Supports two authentication methods:
+// - Application-based: ApplicationKey, ApplicationSecret, ConsumerKey
+// - OAuth2-based: ClientID, ClientSecret
 type OVHCredentials struct {
 	Endpoint          string `json:"endpoint"`
 	ApplicationKey    string `json:"application_key,omitempty"`
@@ -35,6 +39,29 @@ type OVHCredentials struct {
 	ConsumerKey       string `json:"consumer_key,omitempty"`
 	ClientID          string `json:"client_id,omitempty"`
 	ClientSecret      string `json:"client_secret,omitempty"`
+}
+
+// applyCredentials sets the OVH credentials in the Terraform provider configuration.
+// Returns an error if neither application-based nor OAuth2 credentials are valid.
+func (c *OVHCredentials) applyCredentials(config map[string]any) error {
+	config["endpoint"] = c.Endpoint
+
+	// Check for application-based authentication (application_key, application_secret, consumer_key)
+	if c.ApplicationKey != "" && c.ApplicationSecret != "" && c.ConsumerKey != "" {
+		config["application_key"] = c.ApplicationKey
+		config["application_secret"] = c.ApplicationSecret
+		config["consumer_key"] = c.ConsumerKey
+		return nil
+	}
+
+	// Check for OAuth2 authentication (client_id, client_secret)
+	if c.ClientID != "" && c.ClientSecret != "" {
+		config["client_id"] = c.ClientID
+		config["client_secret"] = c.ClientSecret
+		return nil
+	}
+
+	return errors.New(errNoValidCredentials)
 }
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -73,23 +100,11 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		ps.Configuration = map[string]any{
-		"endpoint": creds.Endpoint,
-	}
+		ps.Configuration = map[string]any{}
+		if err := creds.applyCredentials(ps.Configuration); err != nil {
+			return ps, err
+		}
 
-	if creds.ApplicationKey != "" && creds.ApplicationSecret != "" && creds.ConsumerKey != "" {
-		ps.Configuration["application_key"] = creds.ApplicationKey
-		ps.Configuration["application_secret"] = creds.ApplicationSecret
-		ps.Configuration["consumer_key"] = creds.ConsumerKey
 		return ps, nil
-	}
-
-	if creds.ClientID != "" && creds.ClientSecret != "" {
-		ps.Configuration["client_id"] = creds.ClientID
-		ps.Configuration["client_secret"] = creds.ClientSecret
-		return ps, nil
-	}
-
-		return ps, errors.New(errNoValidCredentials)
 	}
 }
